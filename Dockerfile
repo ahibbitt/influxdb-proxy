@@ -1,4 +1,4 @@
-FROM haproxy:1.6-alpine
+FROM haproxy:1.8.9-alpine
 COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
 EXPOSE 8083 8086
 COPY run.sh /bin/
