@@ -1,5 +1,4 @@
 #!/bin/sh
-
 cfg=/usr/local/etc/haproxy/haproxy.cfg
 maxconn=512
 
@@ -37,15 +36,4 @@ else
 fi
 cat $cfg
 
-exec "$(which haproxy)" -p /run/haproxy.pid -f $cfg "$@"
-
-while sleep 60; do
-  ps aux |grep haproxy |grep -q -v grep
-  PROCESS_STATUS=$?
-  # If the greps above find anything, they exit with 0 status
-  # If they are not both 0, then something is wrong
-  if [ $PROCESS_STATUS -ne 0 - ]; then
-    echo "haproxy processes has already exited."
-    exit 1
-  fi
-done
+exec /usr/local/sbin/haproxy -W -db -p /run/haproxy.pid -f $cfg "$@"
