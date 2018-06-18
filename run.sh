@@ -37,4 +37,4 @@ else
 fi
 cat $cfg
 
-exec "$(which haproxy-systemd-wrapper)" -p /run/haproxy.pid -f $cfg "$@"
+exec "$(which haproxy)" -p /run/haproxy.pid -f $cfg "$@"
